@@ -3,5 +3,10 @@
     "vue",
     "markdown"
   ],
-  "makefile.configureOnOpen": false
+  "makefile.configureOnOpen": false,
+  "files.exclude": {
+    "**/*.webp": true,
+    "**/*.avif": true
+  },
+  "editor.tabSize": 2
 }
