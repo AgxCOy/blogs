@@ -35,14 +35,14 @@ export const globalConfig = {
   styles: {
     color: {
       // [1] Use your own color scheme by adjusting the hue, intensity, and lightness values.
-      hue: 0,
+      hue: 350,
       intensity: {
-        light: 17, // suggestion: 20
-        dark: 15, // suggestion: 15 ~ 20
+        light: 10, // suggestion: 20
+        dark: 20, // suggestion: 15 ~ 20
       },
       lightness: {
         light: 54, // suggestion: 50
-        dark: 47, // suggestion: 55 (it looks like catppuccin + mauve when hue is 300)
+        dark: 43, // suggestion: 55 (it looks like catppuccin + mauve when hue is 300)
       },
       rainbow: {
         enabled: false, // hue will be cycled
@@ -51,7 +51,7 @@ export const globalConfig = {
       // [2] If you are a catppuccin lover, you can enable catppuccin color scheme (hue will be ignored when enabled).
       // [WARN] You cannot use it with hue settings.
       catppuccin: {
-        enabled: true, // use catppuccin color scheme (hue will be ignored when enabled)
+        enabled: false, // use catppuccin color scheme (hue will be ignored when enabled)
         flavor: "macchiato", // catppuccin flavor when using dark mode (frappe / macchiato / mocha)
         color: "lavender", // catppuccin color (rosewater / flamingo / pink / mauve / red / maroon / peach / yellow / green / teal / sapphire / blue / lavender)
       },

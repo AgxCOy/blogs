@@ -144,11 +144,11 @@ sudo efibootmgr --create --disk /dev/nvme0n1 --part 1 \
   --label "Arch Linux" --loader /vmlinuz-linux \
   --unicode 'root=UUID=f6419b76-c55b-4d7b-92f7-99c3b04a2a6f rw rootflags=subvol=@  loglevel=3 quiet initrd=\intel-ucode.img initrd=\initramfs-linux.img'
 ```
-::: note 创建启动项命令详解
-- `--part 1`：你的 ESP 分区序号。根据`lsblk`的树状图顺序判别。
-- `--label "Arch Linux"`：启动项名称。大多数固件并不支持中文。
-- `--unicode`后面跟内核参数。
-:::
+> [!NOTE] 创建启动项命令详解
+> - `--part 1`：你的 ESP 分区序号。根据`lsblk`的树状图顺序判别。
+> - `--label "Arch Linux"`：启动项名称。大多数固件并不支持中文。
+> - `--unicode`后面跟内核参数。>
+
 
 归根结底，EFIStub 代替了启动加载器，由我们用户手动建立 UEFI 原生启动项。但这种方式硬要说优点吧……可能也就比 Grub 快那么几秒而已。维护起来并不比 Grub 轻松多少。
 
