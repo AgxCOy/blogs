@@ -202,7 +202,8 @@ geox-url:
 :::
 
 <!-- ::: note 应用支持层 -->
-> 应用支持层主要就是 Docker。Docker 的安装参见官方文档。出于一些原因，现行很多镜像源并不可靠也并不完整，不如直接配置代理（参见[《如何配置 docker 通过代理服务器拉取镜像》（博客园）](https://www.cnblogs.com/abc1069/p/17496240.html)）。
+> [!note] 应用支持层
+> 主要就是 Docker。Docker 的安装参见官方文档。出于一些原因，现行很多镜像源并不可靠也并不完整，不如直接配置代理（参见[《如何配置 docker 通过代理服务器拉取镜像》（博客园）](https://www.cnblogs.com/abc1069/p/17496240.html)）。
 >
 > `pnpm`或者说`node`直接上官网复制 Linux 安装脚本就彳亍，但**不建议去装 Docker 镜像**[^pnpm_docker_image]！
 >

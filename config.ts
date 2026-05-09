@@ -184,7 +184,7 @@ export const globalConfig = {
   friendWeights: {
     // example: -99, // "example" will be displayed at the top
     "=ᗜωᗜ=": -99,
-    UwU: -98,
+    miracle: -98,
     friends: -1,
     unable: 0, // "unable" will be displayed at the bottom
   },

@@ -234,7 +234,7 @@ sudo reboot now
 和系统的配置**大部分**仍可参考[律回指南 Ch.6](https://glowmem.com/archives/archlinux-note#%E5%85%AD%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE)。
 
 <!-- ::: note 关于 Wayland 和 X -->
-> [!note]
+> [!note] 关于 Wayland 和 X
 > KDE 的图形实现默认已经是 Wayland 了。在开机后输入用户密码的界面处，找找屏幕边角，你可以看到默认选用`Plasma (Wayland)`。
 > 点击它，你可以选择换用`Plasma (X11)`。  
 > 尽管 X11 有个“锁屏黑屏”[^x11_lockscreen]的问题，但目前来说我还是推荐换回 X11。
@@ -269,7 +269,7 @@ sudo systemctl enable --now bluetooth
 [^cjk_issues_ref]: 参见 [Arch Wiki：关于中文字被异常渲染成日文异体字的说明](https://wiki.archlinux.org/title/Localization/Simplified_Chinese#Chinese_characters_displayed_as_variant_(Japanese)_glyphs)^2^以及 [Arch 中文论坛：noto-fonts-cjk 打包变化可能导致的回落字体选取问题](https://bbs.archlinuxcn.org/viewtopic.php?pid=60100)^2^。
 
 <!-- ::: note fontconfig -->
-> [!note]
+> [!note] fontconfig
 > `wqy-zenhei`^extra^（文泉驿）和`misans`^aur^会在安装过程中自动帮你配置 fontconfig，因此安装完这两款字体之后系统默认用这些字体显示。
 > 如果你希望使用未经适配的字体，那么需要在 KDE 设置里装好字体后，额外做字体配置。
 >
