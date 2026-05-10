@@ -52,8 +52,8 @@ UEFI 固件首先会**遍历各硬盘的 ESP 分区**，并在其中查找`\EFI\
 - `x64`：x86-64
 - `ia32`：x86-32
 - `ia64`：Itanium
-- `arm`：AArch32，即 arm32 <del>（胳膊 32）</del>
-- `aa64`：AArch64，即 arm64 <del>（64 条胳膊）</del>
+- `arm`：AArch32，即 arm32 ~~（胳膊 32）~~
+- `aa64`：AArch64，即 arm64 ~~（64 条胳膊）~~
 
 > [!note]
 > UEFI 的路径系统与 Windows 类似：以`\`分隔，不区分大小写。
@@ -74,7 +74,7 @@ UEFI 固件首先会**遍历各硬盘的 ESP 分区**，并在其中查找`\EFI\
 :::
 
 ## 启动加载器（以 Grub 为主）
-这也是最广泛使用的启动方式<del>，Windows 也干了</del>。在 Linux 当中，最常用的加载器是 Grub。当然，也有使用 rEFInd 的。
+这也是最广泛使用的启动方式 ~~，Windows 也干了~~。在 Linux 当中，最常用的加载器是 Grub。当然，也有使用 rEFInd 的。
 
 启动加载器（bootloader）本身作为跳板，被 UEFI 固件加载后，需要根据配置找到真正的 Linux 内核，并经由内核引导用户硬盘上的 Arch 系统。而在 Windows 中，`boot[a-z]{3,4}.efi`会根据`BCD`配置文件，执行硬盘其中一个 Windows 副本中的`winload.efi`，并将该副本的其余加载流程交给它完成。
 

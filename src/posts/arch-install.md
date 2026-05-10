@@ -44,7 +44,7 @@ category: 折腾流程
 - 固件^1^：启用 UEFI、禁用安全启动（Secure Boot）。
 
 > 近十几年的主板大都支持 UEFI，我也懒得花篇幅去讲传统 BIOS 引导。对于 Arch Linux 的 UEFI 引导方式，我[另有一篇笔记](./ArchUEFI.md)讨论，可供部署阶段参考。  
-> 至于 Secure Boot，不用想了，给`.efi`启动文件签名着实是件麻烦事。<del>对我而言折腾这个没有意义。</del>
+> 至于 Secure Boot，不用想了，给`.efi`启动文件签名着实是件麻烦事。~~对我而言折腾这个没有意义。~~
 
 - 网络^2^：如需连接 WiFi，提前把 WiFi 名字（SSID）改成英文。
 
@@ -213,7 +213,7 @@ sudo pacman -S pipewire gst-plugin-pipewire pipewire-alsa pipewire-jack pipewire
 
 跟完前面的内容之后，你便拥有了一个无 GUI 的终端 Arch 系统。但作为日常使用的话，图形桌面肯定必不可少。
 
-本文与那两篇参考外链一样**采用 KDE 桌面环境**。当然除了 KDE 之外，你也可以考虑 GNOME 桌面环境<del>（只是我用腻了）</del>；
+本文与那两篇参考外链一样**采用 KDE 桌面环境**。当然除了 KDE 之外，你也可以考虑 GNOME 桌面环境 ~~（只是我用腻了）~~；
 也可以考虑散装方案（比如`niri`，部分配置可参见 [aglab.dotfiles](https://git.liteyuki.org/AgxCOy/aglab.dotfiles)）。
 
 ```bash
@@ -365,7 +365,7 @@ echo GETPIN | pinentry
 ### II. GPG 密钥备份（导出导入）
 之前并没有意识到备份 key 的重要性，结果重装 Arch 重新配置提交签名时，
 我发现 GitHub 和腾讯 Coding 会重置提交验证（同一个邮箱只能上传一个公钥），届时就是我痛苦的 rebase 重签了。
-<del>不过好在受影响的多数只是我的个人项目，变基无伤大雅。</del>
+~~不过好在受影响的多数只是我的个人项目，变基无伤大雅。~~
 
 ```bash
 gpg --list-secret-keys --keyid-format LONG
