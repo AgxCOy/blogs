@@ -150,7 +150,8 @@ button.DocSearch.DocSearch-Button {
 
 .VPDoc {
   img {
-    padding: 0% 25%;
+    display: block;
+    margin: 0 auto;
   }
   .mermaid {
     padding: 0% 12.5%;

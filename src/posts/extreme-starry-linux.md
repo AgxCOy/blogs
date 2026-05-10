@@ -48,7 +48,7 @@ Bottles 是由 [bottlesdevs](https://github.com/bottlesdevs) 开发的可视化 
 初次运行 Bottles 会弹出一个向导跟你 blabla，无脑下一步即可。
 到最后一步时 Bottles 会下载一些组件包。由于众所周知的原因，可能会花费比较长的时间。
 
-![Bottles 主界面](.img/es_linux-bottles_main.webp)
+![Bottles 主界面 =350x](.img/es_linux-bottles_main.webp)
 
 ## 二、部署 Bottle
 
@@ -78,7 +78,7 @@ Bottles 是由 [bottlesdevs](https://github.com/bottlesdevs) 开发的可视化 
 > [!warning]
 > 如果你在全局设置里改过默认目录，千万不要在新建这里又改到同一个位置，否则会报**符号占用，创建失败**。
 
-![新建 Bottle](.img/es_linux-bottles_new_venv.webp)
+![新建 Bottle =350x](.img/es_linux-bottles_new_venv.webp)
 
 然后在右上角点击“创建”即可。
 
@@ -140,7 +140,7 @@ unzip -O GBK -o '~/Documents/0.6.2 离线更新包.zip' -d '~/Documents/Extreme 
 
 然后点开你的 Bottle 进入详情页，为客户端`Extreme Starry.exe`添加快捷方式，这样就不需要每次都点“运行可执行程序”找半天了。  
 
-![Bottle 详情](.img/es_linux-bottle_pref.webp)
+![Bottle 详情 =350x](.img/es_linux-bottle_pref.webp)
 
 > [!tip]
 > 在“选择可执行文件”对话框中，若找不到 exe，请在“过滤”那里改为`Supported Executables`。

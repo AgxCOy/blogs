@@ -1,6 +1,6 @@
 ---
 title: 关于我的三个拟设
-published: 2024-06-17
+published: 2025-05-16
 description: 
 tags: [？？？]
 category: ？？？
@@ -28,7 +28,7 @@ category: ？？？
 
 [^moewiki_catboy]: 这种分类取自[萌娘百科](https://zh.moegirl.org.cn/%E7%8C%AB%E9%83%8E)。简而言之就是“猫少年”，或者说“具有猫部分特征的男孩子”。
 
-![Ca^2+^](.img/my_nickname-Ca.webp)
+![Ca^2+^ =200x](.img/my_nickname-Ca.webp)
 
 最早启用的设定。虽然理论上任何钙离子组成的盐都可以指代我，但中学阶段最常见的沉淀果然还是 CaCO~3~ 吧。然后“碳酸钙摘掉两个氧”，最初的名字——Caco 就确定下来了。后来又衍生出音译“卡扣”、Casheen 和相应音译“卡伸”。  
 老朋友们大抵还是愿意叫我“卡”这组名字，特别是接触过的红警 2 modder 和地图师。
@@ -55,7 +55,7 @@ category: ？？？
 - 喜欢的：听故事和讲故事
 - 讨厌的：毫无营养的信源
 
-![Cl^-^ 的 Q 版头图](.img/my_nickname-Cl.webp)
+![Cl^-^ 的 Q 版头图 =128x](.img/my_nickname-Cl.webp)
 
 在 Caco 因故被一小撮原神同人女<del>散兵厨</del>攻击之后不久，钙的形象弃用，咱也随即改名为 Chloride Pussemi，即 ChlorideP 了。而后有人因为末尾这个 P 以为我是 VOCALOID 曲师（P 主），加上这个昵称全小写起来并不方便手写，遂又更名为 NyaCl.
 
@@ -82,7 +82,7 @@ category: ？？？
 - 喜欢的：涩涩（无论主动被动）
 - 讨厌的：烦心事
 
-![暂时拿过来充数的猫娘图](.img/my_nickname-Ag.webp)
+![暂时拿过来充数的猫娘图 =200x](.img/my_nickname-Ag.webp)
 
 > [!note]
 > 将来有时间和闲钱的话，再为 Ag 这个形象重新约张稿吧。
@@ -111,11 +111,3 @@ category: ？？？
 基于这样的感情，我才决定写下这一篇随笔，完善这几个自设的形象。至于每个设定底下的自白，更多地是对[友链 PR](https://github.com/Twisuki/blog/pull/4) 里的小对话做一个扩写，很抱歉我并不擅长写一个完整的故事，只能像这样侧面地刻画 CaCl~2~ 和 AgCl 这两对之间的亲密关系。
 
 不论钙、氯还是银，都是我精神世界的投射，也都寄托了我的愿望或是欲求。也许我就是很享受被人家说可爱呢？哪怕最终只是在博客里发癫、写一篇篇的碎碎念。
-
-<style>
-.VPDoc {
-  img {
-    padding: 0% 37.5%;
-  }
-}
-</style>

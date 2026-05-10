@@ -300,15 +300,15 @@ DEFINE_HOOK(501EAD, CTriggerOption_OnCBHouseChanged, 5)
 具体的例子还要结合已有的`idb`逆向成果自行意会。虽然函数调用的基本原理在计组那一块已有涉及，
 但一个函数叫什么名字、里面什么寄存器对应什么变量，这些都是前辈们自行逆向出来的结论。对此，咱还是保留点最起码的尊重罢。
 
-<style>
+<!-- <style>
 .VPDoc {
   img {
-    padding: 0% 12.5%;
+    padding: 0% 40px;
   }
 }
 .info.custom-block {
   img {
-    padding: 0% 37.5%;
+    padding: 0%;
   }
 }
-</style>
+</style> -->
