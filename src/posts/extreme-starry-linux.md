@@ -42,8 +42,8 @@ Bottles 是由 [bottlesdevs](https://github.com/bottlesdevs) 开发的可视化 
 
 [^lazy_loading]: 经实测发现，单文件 exe 才可以在这种情况下直接在 Bottles 里启动。但凡需要读同级文件、子文件夹的，都需要在 Bottle 里添加快捷方式，并在快捷方式的设置里手动指明工作目录。
 
-首先需要引入`archlinuxcn`源。具体步骤参见[《Arch 安装流程》](../Maintenance/ArchInstall.md#i-cn-源和-aur-助手)，这里不再重复。  
-接着`sudo pacman -Sy bottles`安装。等待进度跑完，就可以从“应用程序菜单栏”运行了。
+首先需要引入`archlinuxcn`源。具体步骤参见[《Arch 安装流程》](./arch-install.md#i-cn-源和-aur-助手)，这里不再重复。  
+接着`sudo pacman -Sy bottles-bwrap`安装。等待进度跑完，就可以从“应用程序菜单栏”运行了。
 
 初次运行 Bottles 会弹出一个向导跟你 blabla，无脑下一步即可。
 到最后一步时 Bottles 会下载一些组件包。由于众所周知的原因，可能会花费比较长的时间。

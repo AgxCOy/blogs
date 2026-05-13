@@ -43,7 +43,7 @@ category: 折腾流程
 
 - 固件^1^：启用 UEFI、禁用安全启动（Secure Boot）。
 
-> 近十几年的主板大都支持 UEFI，我也懒得花篇幅去讲传统 BIOS 引导。对于 Arch Linux 的 UEFI 引导方式，我[另有一篇笔记](./ArchUEFI.md)讨论，可供部署阶段参考。  
+> 近十几年的主板大都支持 UEFI，我也懒得花篇幅去讲传统 BIOS 引导。对于 Arch Linux 的 UEFI 引导方式，我[另有一篇笔记](./arch-uefi.md)讨论，可供部署阶段参考。  
 > 至于 Secure Boot，不用想了，给`.efi`启动文件签名着实是件麻烦事。~~对我而言折腾这个没有意义。~~
 
 - 网络^2^：如需连接 WiFi，提前把 WiFi 名字（SSID）改成英文。

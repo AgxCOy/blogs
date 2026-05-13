@@ -92,7 +92,7 @@ export const globalConfig = {
         image: "65vh", // only work when type is "image", e.g. "65vh"
         avatar: "50vh", // only work when type is "avatar", e.g. "100vh"
       },
-      pictures: true, // show pictures
+      pictures: false, // show pictures
       lastMoment: true, // last moment
       recentPosts: true, // recent posts
       projects: true, // projects (may be very sloooooow)

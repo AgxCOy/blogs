@@ -2,16 +2,16 @@ name: 部署文档
 
 on:
   # 暂时屏蔽
-  # push:
-  #   branches:
-  #     - main
-  #   paths:
-  #     - .github/**
-  #     - .vitepress/**
-  #     - src/**
-  #     - public/**
-  #     - package.json
-  #     - config.ts
+  push:
+    branches:
+      - main
+    paths:
+      - .github/**
+      - .vitepress/**
+      - src/**
+      - public/**
+      - package.json
+      - config.ts
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
