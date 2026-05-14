@@ -273,7 +273,7 @@ sudo systemctl enable --now bluetooth
 > `wqy-zenhei`^extra^（文泉驿）和`misans`^aur^会在安装过程中自动帮你配置 fontconfig，因此安装完这两款字体之后系统默认用这些字体显示。
 > 如果你希望使用未经适配的字体，那么需要在 KDE 设置里装好字体后，额外做字体配置。
 >
-> 示例：[思源系列字体配置](../../shared/01-Prefer.conf) By [@Vescrity](https://github.com/Vescrity)  
+> 示例：[思源系列字体配置](/shared/01-prefer.conf) By [@Vescrity](https://github.com/Vescrity)  
 > 注意：用户级字体配置需放在`~/.config/fontconfig/conf.d`目录中。  
 > 另注：使用`fc-cache -vf`刷新字体缓存。
 <!-- ::: -->
@@ -281,8 +281,6 @@ sudo systemctl enable --now bluetooth
 至于输入法，现阶段推荐直接安装`fcitx5`，参见 [Miku 指南—进阶安装—常用应用—10. 输入法](https://arch.icekylin.online/guide/rookie/desktop-env-and-app.html#_10-%E5%AE%89%E8%A3%85%E8%BE%93%E5%85%A5%E6%B3%95)。
 
 至此，Arch 的安装告一段落，你可以像捣腾 Windows 那样玩转 Arch 了。
-
----
 
 ## 附录：系统美化
 
