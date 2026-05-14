@@ -1,7 +1,6 @@
 name: 部署文档
 
 on:
-  # 暂时屏蔽
   push:
     branches:
       - main
@@ -36,27 +35,23 @@ jobs:
 
       - name: 设置 pnpm
         uses: pnpm/action-setup@v4
-        # with:
-        #   version: 8
+        with:
+          version: 10
 
 
       - name: 设置 Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 23
+          node-version: latest
           cache: pnpm
 
       - name: 安装依赖
-        run: |
-          corepack enable
-          pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: 构建文档
         env:
           NODE_OPTIONS: --max_old_space_size=8192
-        run: |-
-          pnpm run build
-          > .vitepress/dist/.nojekyll
+        run: pnpm build
 
       - name: 推送 liteyuki pages
         run: |
