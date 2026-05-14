@@ -162,7 +162,7 @@ export const globalConfig = {
   // comments
   comments: {
     enable: true,
-    type: "giscus",
+    type: "twikoo",
     giscus: {
       repo: "AgxCOy/AgxCOy",
       repoId: "R_kgDOLMGphQ",
@@ -172,9 +172,9 @@ export const globalConfig = {
         dark: "https://giscus.catppuccin.com/themes/mocha.css",
       },
     },
-    // twikoo: {
-    //   env: "https://twikoo.qwq.blue",
-    // },
+    twikoo: {
+      env: "https://twikoo.agxcoy.shimakaze.org",
+    },
   },
 
   // waterfall
