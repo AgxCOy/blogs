@@ -3,7 +3,7 @@ title: 关于我的三个拟设
 published: 2025-05-16
 description: 
 tags: [？？？]
-category: ？？？
+category: 碎碎念
 # origin: https://github.com/silvaire-qwq/miracle
 ---
 
