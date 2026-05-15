@@ -49,15 +49,17 @@ const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
 
 <style scoped>
 .friend-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   gap: var(--vp-gap);
+  width: 100%;
 }
 
 .friend-card {
   perspective: 1000px;
   border-radius: var(--vp-border-radius-1);
   transition: all var(--vp-transition-time);
+  width: 100%; /* 保证卡片撑满分配到的网格宽度 */
 }
 
 .friend-inner {
@@ -73,6 +75,8 @@ const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
   text-decoration: none;
   color: inherit;
   will-change: transform;
+  height: 100%; /* 保证同一行的卡片高度一致 */
+  box-sizing: border-box; /* 避免 padding 撑破容器 */
 }
 
 .friend-card:hover .friend-inner {
@@ -88,11 +92,13 @@ const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
   width: 24px;
   height: 24px;
   border-radius: 50%;
+  flex-shrink: 0; /* 防止头像在极窄屏幕被压缩 */
 }
 
 .friend-info {
   display: flex;
   flex-direction: column;
+  overflow: hidden; /* 防止文字过长撑破容器 */
 }
 
 .friend-title {
@@ -100,5 +106,8 @@ const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
   transition: all var(--vp-transition-time);
   font-size: 16px;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 名字过长时显示省略号 */
 }
 </style>
