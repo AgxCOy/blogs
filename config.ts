@@ -31,6 +31,7 @@ export const globalConfig = {
     repo: "AgxCOy/blogs", // the repo of ur blog
   },
   dateCreated: "2026-05-06", // date created (YYYY-MM-DD)
+  deepHideNegative: true, // enable press "s" 1s to show negative button
 
   // theme setting
   styles: {
