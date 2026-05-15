@@ -37,16 +37,17 @@ const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
 
 <style scoped>
 .tech-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
   gap: var(--vp-gap);
-  align-items: flex-start;
+  width: 100%;
 }
 
 .tech-card {
   perspective: 1000px;
   transition: all var(--vp-transition-time);
   border-radius: var(--vp-border-radius-1);
+  width: 100%; /* 保证占满分配到的网格宽度 */
 }
 
 .tech-inner {
@@ -60,7 +61,8 @@ const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
   border-radius: inherit;
   box-shadow: var(--vp-shadow);
   will-change: transform;
-  white-space: nowrap; /* 防止文本换行 */
+  height: 100%; /* 保证同行卡片高度一致 */
+  box-sizing: border-box; /* 防止 padding 撑破容器 */
 }
 
 .tech-card:hover .tech-inner {
@@ -72,9 +74,13 @@ const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
 .tech-icon {
   width: 24px;
   height: 24px;
+  flex-shrink: 0; /*  保证图标在极窄情况下不会被挤压变扁 */
 }
 
 .tech-name {
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 核心防溢出：当文字太长导致无法在一行显示时，显示为省略号 */
 }
 </style>
