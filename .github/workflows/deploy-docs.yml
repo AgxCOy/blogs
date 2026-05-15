@@ -14,16 +14,13 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-permissions:
-  contents: write
-  statuses: write
-
-env:
-  MELI_SITE: b9bc0b87-f062-4724-b2f5-55866ff12736
+# permissions:
+#   contents: write
+#   statuses: write
 
 jobs:
   build:
-    runs-on: [ubuntu-latest, liteyuki]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,15 +50,10 @@ jobs:
           NODE_OPTIONS: --max_old_space_size=8192
         run: pnpm build
 
-      - name: 推送 liteyuki pages
-        run: |
-          pnpx @getmeli/cli upload \
-            --branch main \
-            --url "https://dash.apage.dev" \
-            --site "$MELI_SITE" \
-            --token "$MELI_TOKEN" \
-            --release "$GITHUB_SHA" \
-            .vitepress/dist
+      - name: to edgeone
         env:
-          MELI_TOKEN: ${{ secrets.MELI_TOKEN }}
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EDGEONE_PAGES_API_TOKEN: ${{ secrets.EDGEONE_PAGES_API_TOKEN }}
+        run: |
+          pnpm dlx edgeone pages deploy .vitepress/dist \
+            --name agxcoy-blogs \
+            --token $EDGEONE_PAGES_API_TOKEN

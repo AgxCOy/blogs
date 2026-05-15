@@ -26,7 +26,7 @@ export const globalConfig = {
     "https://wsrv.nl/?url=github.com/AgxCOy.png?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=4&mask=circle", // favicon (suggest: circle mask)
   url: "https://agxcoy.shimakaze.org", // main url (https://xxxx.xxx)
   blogBase: {
-    type: "gitea", // github / gitea
+    type: "github", // github / gitea
     giteaUrl: "https://git.liteyuki.org", // if the type is gitea, fill in the gitea url like: https://gitea.com
     repo: "AgxCOy/blogs", // the repo of ur blog
   },
@@ -152,7 +152,7 @@ export const globalConfig = {
         // enable / disable music list
         { text: languageFile.musics, link: "/musics" },
         { text: languageFile.photos, link: "/photos" },
-        { text: languageFile.manager, link: "/manager" },
+        // { text: languageFile.manager, link: "/manager" },
         // enable / disable comments
         { text: languageFile.whiteboard, link: "/whiteboard" },
       ],
