@@ -1,59 +1,31 @@
-name: 部署文档
+name: Trigger deploys (on liteyuki)
 
 on:
   push:
     branches:
       - main
-    paths:
-      - .github/**
-      - .vitepress/**
-      - src/**
-      - public/**
-      - package.json
-      - config.ts
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # permissions:
 #   contents: write
 #   statuses: write
 
 jobs:
-  build:
+  trigger:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          # lfs: true
-          # 如果你文档需要 Git 子模块，取消注释下一行
-          # submodules: true
-
-      - name: 设置 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-
-      - name: 设置 Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: latest
-          cache: pnpm
-
-      - name: 安装依赖
-        run: pnpm install
-
-      - name: 构建文档
-        env:
-          NODE_OPTIONS: --max_old_space_size=8192
-        run: pnpm build
-
-      - name: to edgeone
-        env:
-          EDGEONE_PAGES_API_TOKEN: ${{ secrets.EDGEONE_PAGES_API_TOKEN }}
+      - name: Trigger Gitea workflow via API
         run: |
-          pnpm dlx edgeone pages deploy .vitepress/dist \
-            --name agxcoy-blogs \
-            --token $EDGEONE_PAGES_API_TOKEN
+          curl -X POST \
+            "https://git.liteyuki.org/${{ secrets.GITEA_URI }}" \
+            -H "Authorization: token ${{ secrets.GITEA_TOKEN }}" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "event": "github-push",
+              "ref": "refs/heads/main",
+              "inputs": {
+                "github_repo": "${{ github.repository }}",
+                "github_sha": "${{ github.sha }}",
+                "github_ref": "${{ github.ref }}"
+              }
+            }'
