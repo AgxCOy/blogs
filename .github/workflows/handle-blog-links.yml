@@ -1,0 +1,48 @@
+on:
+  repository_dispatch:
+    types: [bloglink-request]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  submit_pr:
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_NUMBER: ${{ github.event.client_payload.ISSUE_NUMBER }}
+      BRANCH: "links/gh${{ github.event.client_payload.ISSUE_NUMBER }}"
+    steps:
+      - name: 签出博客仓库
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+
+      - name: 更新友链
+        shell: pwsh
+        env:
+          TOKEN_URI: 'https://${{ secrets.GITHUB_TOKEN }}@github.com/AgxCOy/blogs'
+        run: |-
+          git checkout -b "${{ env.BRANCH }}"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          $link = ConvertFrom-Json '${{ github.event.client_payload.LINK }}' -AsHashtable
+          if ($link.folder -eq '_No response_') {
+            $link.Remove('folder')
+          }
+          $link | ConvertTo-Json > 'public/${{ env.ISSUE_NUMBER }}-0.json'
+
+          git add .
+          git commit -m "${{ github.event.client_payload.MSG }}"
+          git push "${{ env.TOKEN_URI }}" "${{ env.BRANCH }}" --force
+
+      - name: 创建合并请求
+        shell: pwsh
+        env:
+          PR_OPTS: ${{ github.event.client_payload.PR_OPTS }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |-
+          $pr_opts = ConvertTo-Json '${{ env.PR_OPTS }}'
+          gh pr create --base main --head '${{ env.BRANCH }}' `
+            --body "$($pr_opts.body)" --title "$($pr_opts.title)"
