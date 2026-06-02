@@ -76,6 +76,11 @@ const handleCategoryClick = (category: string) => {
 
   window.history.pushState({}, "", url);
 };
+
+const activeImg = ref()
+
+const showImg = (url: string) => { activeImg.value = url }
+const closeImg = () => { activeImg.value = null }
 </script>
 
 <h1 class="artist">{{globalConfig.lang.photos}}</h1>
@@ -123,15 +128,22 @@ const handleCategoryClick = (category: string) => {
           >
             <PostCard
               :image="photo.path"
-              :url="photo.path"
               :description="photo.fileName"
               meta=false
+              @click="showImg(photo.path)"
             />
           </div>
         </div>
       </div>
     </div>
   </ClientOnly>
+
+  <Transition name="fade">
+    <div v-if="activeImg" class="lightbox-overlay" @click="closeImg">
+      <div class="close-btn">&times;</div>
+      <img :src="activeImg" class="lightbox-img" @click.stop />
+    </div>
+  </Transition>
 </div>
 
 <style scoped>
@@ -170,4 +182,38 @@ const handleCategoryClick = (category: string) => {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* 确保在 VitePress 导航栏之上 */
+  cursor: zoom-out;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  cursor: default;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
 </style>

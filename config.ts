@@ -62,9 +62,8 @@ export const globalConfig = {
 
   // homepage setting (when globalConfig.modules.banner is a url)
   homePage: {
-    avatar:
-      "https://github.com/AgxCOy.png",
-      // "https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=3", // your avatar
+    avatar: "https://github.com/AgxCOy.png",
+    // "https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=3", // your avatar
 
     // modules
     modules: {
@@ -168,13 +167,13 @@ export const globalConfig = {
       {
         icon: "ph:sparkle-duotone",
         title: "擅长之物",
-        content: "English, Desktop Maintenance, Scripting"
+        content: "English, Desktop Maintenance, Scripting",
       },
       {
         icon: "ph:translate-duotone",
         title: "语种",
-        content: "Chinese, English, Cantonese"
-      }
+        content: "Chinese, English, Cantonese",
+      },
     ],
     todo: [
       { complete: true, text: "女装" },

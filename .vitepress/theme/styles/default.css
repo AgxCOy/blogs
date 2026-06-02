@@ -147,3 +147,13 @@ button.DocSearch.DocSearch-Button {
     display: none;
   }
 }
+
+.VPDoc {
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+  .mermaid {
+    padding: 0% 12.5%;
+  }
+}

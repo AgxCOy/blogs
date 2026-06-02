@@ -11,9 +11,9 @@
 @import url("./components.css");
 @import url("./twikoo.css");
 @import url("katex/dist/katex.min.css");
-@import url("https://rsms.me/inter/inter.css");
-@import url("https://rsms.me/res/fonts/ibm-plex-mono.css?v=20260427014245");
 @import url("https://fonts.googleapis.cn/css2?family=Noto+Serif+SC:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.cn/css2?family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&display=swap");
+@import url("/fonts/style.css");
 
 /**
  * Variables
@@ -21,8 +21,8 @@
 
 :root {
   /* font family */
-  --vp-font-family-base: "InterVariable", system-ui, sans-serif;
-  --vp-font-family-mono: "IBM Plex Mono", var(--vp-font-family-base);
+  --vp-font-family-base: "LXGW WenKai", system-ui, sans-serif;
+  --vp-font-family-mono: "Google Sans Code", var(--vp-font-family-base);
   /* only for title !!!!!! */
   --vp-font-family-title: "Noto Serif SC", var(--vp-font-family-base);
 
@@ -73,30 +73,3 @@
   --vp-mini-bg: var(--vp-c-border);
 }
 
-@font-face {
-  font-family: "OPPO Sans";
-  src: url("https://www.oppo.com/content/dam/statics/fonts/cn/OPPOSans3.0cn-Bold.woff2")
-    format("woff2");
-  font-weight: 700;
-}
-
-@font-face {
-  font-family: "OPPO Sans";
-  src: url("https://www.oppo.com/content/dam/statics/fonts/cn/OPPOSans3.0cn-Bold.woff2")
-    format("woff2");
-  font-weight: 600;
-}
-
-@font-face {
-  font-family: "OPPO Sans";
-  src: url("https://www.oppo.com/content/dam/statics/fonts/cn/OPPOSans3.0cn-Medium.woff2")
-    format("woff2");
-  font-weight: 500;
-}
-
-@font-face {
-  font-family: "OPPO Sans";
-  src: url("https://www.oppo.com/content/dam/statics/fonts/cn/OPPOSans3.0cn-Regular.woff2")
-    format("woff2");
-  font-weight: 400;
-}

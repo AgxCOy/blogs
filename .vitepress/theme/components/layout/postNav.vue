@@ -17,7 +17,10 @@ const currentIndex = computed(() =>
 
 // 上一篇
 const prevPost = computed(() => {
-  if (currentIndex.value < 0 || currentIndex.value >= visiblePosts.value.length - 1) {
+  if (
+    currentIndex.value < 0 ||
+    currentIndex.value >= visiblePosts.value.length - 1
+  ) {
     return null;
   }
   return visiblePosts.value[currentIndex.value + 1];

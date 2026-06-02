@@ -1,8 +1,5 @@
 {
-  "vue.server.includeLanguages": [
-    "vue",
-    "markdown"
-  ],
+  "vue.server.includeLanguages": ["vue", "markdown"],
   "makefile.configureOnOpen": false,
   "files.exclude": {
     "**/*.webp": true,
