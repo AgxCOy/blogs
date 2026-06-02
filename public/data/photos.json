@@ -1,0 +1,56 @@
+{
+  "black": [
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/keqing/keqing-202501.webp",
+      "name": "刻晴黑巧"
+    }
+  ],
+  "white": [
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/white/white_250604_1.webp",
+      "name": "大白甜筒"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/white/white_250604_2.webp",
+      "name": "奶白冰棍"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/white/white_250604_3.webp",
+      "name": "白巧"
+    }
+  ],
+  "maid": [
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-1.avif",
+      "name": "女仆黑巧"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-2.avif",
+      "name": "女仆装"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-3.avif",
+      "name": "黑巧"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-4.avif",
+      "name": "（并非）玉"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-5.avif",
+      "name": "白丝 & 腿环"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-6.avif",
+      "name": "粗腿"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-7.avif",
+      "name": "女仆装冰淇淋"
+    },
+    {
+      "url": "https://agxcoy-static.apage.dev/dress/maid/maid-251231-8.avif",
+      "name": "腿好粗……"
+    }
+  ]
+}

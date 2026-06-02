@@ -1,0 +1,17 @@
+{
+  "ci": {
+    "collect": {
+      "url": [
+        "http://localhost",
+        "http://localhost/moments.html",
+        "http://localhost/posts/ra2-trigger-logic.html",
+        "http://localhost/archives.html",
+        "http://localhost/about.html"
+      ],
+      "staticDistDir": ".vitepress/dist"
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}

@@ -1,0 +1,101 @@
+name: deploys
+
+on:
+  push:
+    paths:
+      - .vitepress/**
+      - public/**
+      - src/**
+      - config.ts
+      - package.json
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Force Update EdgeOne Pages'
+        required: false
+        type: boolean
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 下载最新字体分包
+        run: |
+          mkdir -p public/fonts
+          cd public/fonts
+          gh release download -R AgxCOy/lxgwwenkai-vp-hope --pattern '*.tar.gz' --clobber
+          tar -xzf *.tar.gz --strip-components=1
+          rm *.tar.gz
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 设置 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+          cache: pnpm
+
+      - name: 构建博客
+        run: pnpm install && pnpm build
+
+      - uses: actions/upload-artifact@v6
+        with:
+          name: site-dist
+          path: .vitepress/dist/**/*
+          compression-level: 9
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: |
+      (github.event_name != 'workflow_dispatch' ||
+      github.event.inputs.publish == 'true') &&
+      github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-dist
+          path: .vitepress/dist
+
+      - name: 设置 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: 推送 EdgeOne
+        run: |
+          pnpm dlx edgeone pages deploy .vitepress/dist \
+            --name agxcoy-blogs \
+            --token $EDGEONE_PAGES_API_TOKEN
+        env:
+          EDGEONE_PAGES_API_TOKEN: ${{ secrets.EDGEONE_PAGES_API_TOKEN }}
+
+  lighthouse:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: site-dist
+          path: .vitepress/dist
+
+      - name: 设置 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Lighthouse 性能测试
+        run: |
+          pnpm install -g @lhci/cli@0.15.x
+          lhci autorun
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

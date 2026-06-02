@@ -1,0 +1,49 @@
+on:
+  workflow_dispatch:
+    inputs:
+      SOURCE_REPO:
+        description: "源仓库"
+        required: true
+      ISSUE_NUMBER:
+        description: "Issue 编号"
+        required: true
+      METADATA:
+        description: "友链元数据"
+        required: true
+
+jobs:
+  submit_pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: 签出博客仓库
+        uses: actions/checkout@v6
+
+      - name: 更新友链
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |-
+          git checkout -b 'links/gh#${{ github.event.inputs.ISSUE_NUMBER }}'
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          '${{ github.event.inputs.METADATA }}' `
+          | ConvertFrom-Json `
+          | ConvertTo-Json `
+          | Out-File -LiteralPath './public/data/friends/${{ github.event.inputs.ISSUE_NUMBER }}-0.json'
+
+          git add './public/data/friends/${{ github.event.inputs.ISSUE_NUMBER }}-0.json'
+          git commit -m "更新友链 ${{ fromJson(github.event.inputs.METADATA).title }}
+
+          ${{ github.event.inputs.SOURCE_REPO }}#${{ github.event.inputs.ISSUE_NUMBER }}
+          "
+
+          git push origin 'links/gh#${{ github.event.inputs.ISSUE_NUMBER }}' --force
+          gh pr create `
+            --base main `
+            --head 'links/gh#${{ github.event.inputs.ISSUE_NUMBER }}' `
+            --title "友链请求：${{ fromJson(github.event.inputs.METADATA).title }}" `
+            --body "Closes ${{ github.event.inputs.SOURCE_REPO }}#${{ github.event.inputs.ISSUE_NUMBER }}"

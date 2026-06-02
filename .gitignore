@@ -114,3 +114,9 @@ draft.md
 
 # folders created by IDE
 .idea
+
+# Miracle Specific
+public/data.json
+
+# uploaded artifacts from CI, not git
+public/fonts/**

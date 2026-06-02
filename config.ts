@@ -14,29 +14,29 @@ const languageMap: Record<string, any> = { zh, en };
 // hey !!! you !!!
 // change it to "zh" if you want to use Chinese
 // website language (zh / en)
-const defaultLanguage = "en";
+const defaultLanguage = "zh";
 const languageFile = languageMap[defaultLanguage] || en; // do not edit it
 // CONFIGS ----------------------------------------------------------------------
 export const globalConfig = {
-  title: "Silvaire's Blog", // title
-  description: "Per Aspera Ad Astra", // description
-  author: "Silvaire", // your name
+  title: "Ag's Playground", // title
+  description: "Silver=Ag, L is Lin.", // description
+  author: "SilverAg.L", // your name
   favicon:
-    "https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=4&mask=circle", // favicon (suggest: circle mask)
-  url: "https://qwq.blue", // main url (https://xxxx.xxx)
+    "https://wsrv.nl/?url=github.com/AgxCOy.png?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=4&mask=circle", // favicon (suggest: circle mask)
+  url: "https://agxcoy.shimakaze.org", // main url (https://xxxx.xxx)
   blogBase: {
     type: "github", // github / gitea
-    giteaUrl: "https://gitea.com", // if the type is gitea, fill in the gitea url like: https://gitea.com
-    repo: "Miralous/Miracle", // the repo of ur blog
+    giteaUrl: "https://git.liteyuki.org", // if the type is gitea, fill in the gitea url like: https://gitea.com
+    repo: "AgxCOy/blogs", // the repo of ur blog
   },
-  dateCreated: "2024-03-23", // date created (YYYY-MM-DD)
-  deepHideNegative: true, // enable press "s(how)" 1s to show negative button
+  dateCreated: "2026-05-06", // date created (YYYY-MM-DD)
+  deepHideNegative: true, // enable press "s" 1s to show negative button
 
   // theme setting
   styles: {
     color: {
-      hue: 280,
-      globalHue: false, // if true, the hue will be applied to all colors; if false, only the hue of brand color will be changed, the others is calculated based on catppuccin latte & macchiato palette.
+      hue: 350,
+      globalHue: true, // if true, the hue will be applied to all colors; if false, only the hue of brand color will be changed, the others is calculated based on catppuccin latte & macchiato palette.
       rainbow: {
         enabled: false, // hue will be cycled
         speed: 10, // hue is (getCurrentHue() + x) % 360......(updateHue, 100);
@@ -45,7 +45,7 @@ export const globalConfig = {
     visual: {
       transition: 10, // x[s(second(s))] / 100 | e.g. 10 -> 0.1s (default)
       gap: 12, // x[px]
-      radius: 26, // x[px]
+      radius: 13, // x[px]
       enableCardTitle: true, // show title in custom card (warning, danger...)
       transparent: false, // transparent? (for year & artist)
       uppercase: false, // CATEGORIES / Categories
@@ -63,15 +63,16 @@ export const globalConfig = {
   // homepage setting (when globalConfig.modules.banner is a url)
   homePage: {
     avatar:
-      "https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=3", // your avatar
+      "https://github.com/AgxCOy.png",
+      // "https://wsrv.nl/?url=avatars.githubusercontent.com/u/184231508?s=400&u=0a370792ba6bbb95a04d309171b562bcd7283a0f&v=3", // your avatar
+
     // modules
     modules: {
       banner: {
-        imgurl:
-          "https://i.mji.rip/2026/05/26/b15f373cb4e715b252bb9aa3f5687904.jpeg", // only work when type is image, e.g. "https://cdn.jsdelivr.net/gh/Miralous/Miracle@main/src/assets/banner.png"
-        image: "70vh", // only work when type is "image", e.g. "65vh"
+        imgurl: "https://www.loliapi.com/acg/", // only work when type is image, e.g. "https://cdn.jsdelivr.net/gh/Miralous/Miracle@main/src/assets/banner.png"
+        image: "100vh", // only work when type is "image", e.g. "65vh"
       },
-      pictures: true, // show pictures
+      pictures: false, // show pictures
       lastMoment: true, // last moment
       recentPosts: true, // recent posts
       projects: true, // projects (may be very sloooooow)
@@ -86,23 +87,29 @@ export const globalConfig = {
       { name: "CSS", icon: "css3" },
       { name: "HTML", icon: "html5" },
       { name: "Linux", icon: "linux" },
-      { name: "Vue", icon: "vuejs" },
-      { name: "JSON", icon: "json" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "PNPM", icon: "pnpm" },
+      // { name: "Vue", icon: "vuejs" },
+      // { name: "JSON", icon: "json" },
+      // { name: "JavaScript", icon: "javascript" },
+      // { name: "PNPM", icon: "pnpm" },
       { name: "Visual Studio Code", icon: "vscode" },
-      { name: "VSCodium", icon: "vscodium" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Node.js", icon: "nodejs" },
-      { name: "Vite", icon: "vitejs" },
-      { name: "Vim", icon: "vim" },
-      { name: "Neovim", icon: "neovim" },
+      // { name: "VSCodium", icon: "vscodium" },
+      // { name: "TypeScript", icon: "typescript" },
+      // { name: "Node.js", icon: "nodejs" },
+      // { name: "Vite", icon: "vitejs" },
+      // { name: "Vim", icon: "vim" },
+      // { name: "Neovim", icon: "neovim" },
       { name: "Windows", icon: "windows11" },
       { name: "Git", icon: "git" },
-      { name: "NPM", icon: "npm" },
-      { name: "Yarn", icon: "yarn" },
-      { name: "Tailwind CSS", icon: "tailwindcss" },
+      // { name: "NPM", icon: "npm" },
+      // { name: "Yarn", icon: "yarn" },
+      // { name: "Tailwind CSS", icon: "tailwindcss" },
       { name: "Docker", icon: "docker" },
+      { name: "C#", icon: "csharp" },
+      { name: "Python", icon: "python" },
+      { name: "FastAPI", icon: "fastapi" },
+      { name: "MySQL", icon: "mysql" },
+      { name: "Nginx", icon: "nginx" },
+      { name: "PowerShell", icon: "powershell" },
     ],
   },
 
@@ -127,7 +134,7 @@ export const globalConfig = {
         // enable / disable music list
         { text: languageFile.musics, link: "/musics" },
         { text: languageFile.photos, link: "/photos" },
-        { text: languageFile.manager, link: "/manager" },
+        // { text: languageFile.manager, link: "/manager" },
         // enable / disable comments
         { text: languageFile.whiteboard, link: "/whiteboard" },
       ],
@@ -136,123 +143,65 @@ export const globalConfig = {
 
   // abouts
   about: {
-    desc: "A student who is learning frontend development",
+    desc: "(ᗜ ˰ ᗜ)",
     tags: [
       {
         icon: "ph:city-duotone",
-        title: "Location",
-        content: "Tianjin",
+        title: "城市",
+        content: "Canton, Guangdong",
       },
       {
         icon: "ph:cake-duotone",
-        title: "Birthday",
-        content: "May 30, 2013",
+        title: "生日",
+        content: "May 22",
       },
       {
-        icon: "ph:ruler-duotone",
-        title: "Height",
-        content: "144 CM",
+        icon: "ph:graduation-cap-duotone",
+        title: "知识水平",
+        content: "Bachelor, Management",
       },
       {
-        icon: "ph:feather-duotone",
-        title: "Weight",
-        content: "43 KG",
+        icon: "ph:laptop-duotone",
+        title: "终端",
+        content: "Acer Swift SF314-511",
       },
+      {
+        icon: "ph:sparkle-duotone",
+        title: "擅长之物",
+        content: "English, Desktop Maintenance, Scripting"
+      },
+      {
+        icon: "ph:translate-duotone",
+        title: "语种",
+        content: "Chinese, English, Cantonese"
+      }
     ],
     todo: [
-      { complete: true, text: "Write more articles" },
-      { complete: false, text: "Miracle v2" },
-      { complete: false, text: "Make more friends" },
+      { complete: true, text: "女装" },
+      { complete: false, text: "学车" },
+      { complete: false, text: "揾点嘢做" },
+      { complete: false, text: "搭一套持续可用的自组服务" },
     ],
     schedule: {
-      enabled: true,
-      monday: [
-        { time: "07:30-07:50", name: "English" },
-        { time: "08:00-08:45", name: "Chinese" },
-        { time: "09:15-10:00", name: "Biology" },
-        { time: "10:15-11:00", name: "Geography" },
-        { time: "11:15-12:00", name: "English" },
-        { time: "13:30-14:15", name: "Maths" },
-        { time: "14:30-15:15", name: "Physical Education" },
-        { time: "15:30-16:15", name: "English" },
-        { time: "16:45-17:30", name: "English" },
-        { time: "17:45-18:20", name: "Drama" },
-      ],
-      tuesday: [
-        { time: "07:30-07:50", name: "Maths" },
-        { time: "08:00-08:45", name: "Maths" },
-        { time: "09:15-10:00", name: "English" },
-        { time: "10:15-11:00", name: "Physical Education" },
-        { time: "11:15-12:00", name: "Biology" },
-        { time: "13:30-14:15", name: "Political Education" },
-        { time: "14:30-15:15", name: "Labor" },
-        { time: "15:30-16:15", name: "Chinese" },
-        { time: "16:45-17:30", name: "Geography" },
-        { time: "17:45-18:20", name: "History" },
-      ],
-      wednesday: [
-        { time: "07:30-07:50", name: "Geography" },
-        { time: "08:00-08:45", name: "Chinese" },
-        { time: "09:15-10:00", name: "Political Education" },
-        { time: "10:15-11:00", name: "Maths" },
-        { time: "11:15-12:00", name: "Maths" },
-        { time: "13:30-14:15", name: "Chinese" },
-        { time: "14:30-15:15", name: "Physical Education (Public)" },
-        { time: "15:30-16:15", name: "Geography" },
-        { time: "16:45-17:30", name: "Maths" },
-        { time: "17:45-18:20", name: "Maths" },
-      ],
-      thursday: [
-        { time: "07:30-07:50", name: "Chinese" },
-        { time: "08:00-08:45", name: "English" },
-        { time: "09:15-10:00", name: "Information Technology" },
-        { time: "10:15-11:00", name: "Music" },
-        { time: "11:15-12:00", name: "History" },
-        { time: "13:30-14:15", name: "Physical Education" },
-        { time: "14:30-15:15", name: "Chinese" },
-        { time: "15:30-16:15", name: "Chinese" },
-        { time: "16:45-17:30", name: "Chinese" },
-        { time: "17:45-18:20", name: "Chinese" },
-      ],
-      friday: [
-        { time: "07:30-07:50", name: "English" },
-        { time: "08:00-08:45", name: "Art" },
-        { time: "09:15-10:00", name: "Biology" },
-        { time: "10:15-11:00", name: "Political Education" },
-        { time: "11:15-12:00", name: "History" },
-        { time: "13:30-14:15", name: "English" },
-        { time: "14:30-15:15", name: "Maths" },
-        { time: "15:30-16:15", name: "Physical Education (Public)" },
-        { time: "16:45-17:30", name: "English" },
-        { time: "17:45-18:20", name: "English" },
-      ],
-      saturday: [
-        { time: "09:30-12:00", name: "Maths" },
-        { time: "14:00-15:00", name: "Physical Education (Kick Boxing)" },
-        { time: "19:00-21:30", name: "Chinese / Drama" },
-      ],
-      sunday: [
-        { time: "09:30-12:00", name: "English" },
-        { time: "15:00-16:00", name: "Instrument" },
-      ],
+      enabled: false,
     },
   },
 
   // comments
   comments: {
     enabled: true,
-    type: "giscus",
+    type: "twikoo",
     giscus: {
-      repo: "Miralous/Miracle",
-      repoId: "R_kgDOPz1WLw",
-      categoryId: "DIC_kwDOPz1WL84Cvsrq",
+      repo: "AgxCOy/AgxCOy",
+      repoId: "R_kgDOLMGphQ",
+      categoryId: "DIC_kwDOLMGphc4CradT",
       themes: {
         light: "https://giscus.catppuccin.com/themes/latte.css",
         dark: "https://giscus.catppuccin.com/themes/mocha.css",
       },
     },
     twikoo: {
-      env: "https://twikoo.qwq.blue",
+      env: "https://twikoo.agxcoy.shimakaze.org",
     },
   },
 
@@ -267,14 +216,14 @@ export const globalConfig = {
   friendWeights: {
     // example: -99, // "example" will be displayed at the top
     "=ᗜωᗜ=": -99,
-    UwU: -98,
+    uwU: -98,
     friends: -1,
     unable: 0, // "unable" will be displayed at the bottom
   },
 
   // netease music list
   netease: {
-    musicList: "17942010185",
+    musicList: "98465691",
     metingApi: "https://api.qijieya.cn/meting",
     demoMode: true, // if false, it will hide control buttons
     showTranslation: true, // show translation of lyrics (default: false, set true to show)
