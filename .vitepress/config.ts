@@ -82,7 +82,11 @@ export default withMermaid({
       });
     },
   },
-  head: [["link", { rel: "icon", href: globalConfig.favicon }]],
+  head: [
+    ["link", { rel: "icon", href: globalConfig.favicon }],
+    ['link', { rel: 'dns-prefetch', href: 'https://fonts.googleapis.cn' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.cn' }],
+  ],
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config

@@ -68,8 +68,8 @@ export const globalConfig = {
     // modules
     modules: {
       banner: {
-        imgurl: "https://www.loliapi.com/acg/", // only work when type is image, e.g. "https://cdn.jsdelivr.net/gh/Miralous/Miracle@main/src/assets/banner.png"
-        image: "100vh", // only work when type is "image", e.g. "65vh"
+        imgurl: "https://agxcoy-static.apage.dev/136562527_p0.avif", // only work when type is image, e.g. "https://cdn.jsdelivr.net/gh/Miralous/Miracle@main/src/assets/banner.png"
+        image: "50vh", // only work when type is "image", e.g. "65vh"
       },
       pictures: false, // show pictures
       lastMoment: true, // last moment
