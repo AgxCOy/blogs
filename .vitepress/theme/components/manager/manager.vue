@@ -153,12 +153,12 @@ const momentFileTemplate = () => {
     new Date().toLocaleString("en-US", { timeZone: "Asia/Shanghai" }),
   );
 
-  return `{
-  "date": "${date}",
-  "time": "${String(beijingNow.getHours()).padStart(2, "0")}:${String(beijingNow.getMinutes()).padStart(2, "0")}",
-  "content": "",
-  "image": ""
-}`;
+  return `# negative: true
+date: ${date}
+time: ${String(beijingNow.getHours()).padStart(2, "0")}:${String(beijingNow.getMinutes()).padStart(2, "0")}
+image: 
+content: |
+  `;
 };
 
 // 🔹 图片管理（Photos）
@@ -335,7 +335,7 @@ const showPhotosTab = computed(() => !photos || photos.length === 0);
                 getRepoUrl(
                   'new',
                   'moments',
-                  getCurrentTimeString() + '.json',
+                  getCurrentTimeString() + '.yaml',
                   encodeURIComponent(momentFileTemplate()),
                 )
               "
