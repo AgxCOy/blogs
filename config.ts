@@ -36,7 +36,8 @@ export const globalConfig = {
   styles: {
     color: {
       hue: 350,
-      globalHue: true, // if true, the hue will be applied to all colors; if false, only the hue of brand color will be changed, the others is calculated based on catppuccin latte & macchiato palette.
+      globalHue: false, // if true, the hue will be applied to all colors; if false, only the hue of brand color will be changed, the others is calculated based on catppuccin latte & macchiato palette.
+      preset: "claude" as "claude" | "catppuccin", // color scheme: "claude" (warm humanist) | "catppuccin" (pastel purple)
       rainbow: {
         enabled: false, // hue will be cycled
         speed: 10, // hue is (getCurrentHue() + x) % 360......(updateHue, 100);
@@ -112,7 +113,7 @@ export const globalConfig = {
     ],
   },
 
-  github: "Miralous", // your github username
+  github: "AgxCOy", // your github username
 
   // navigation items
   nav: [
@@ -139,6 +140,18 @@ export const globalConfig = {
       ],
     },
   ],
+  EXIF_GPS: true, // enable GPS in EXIF (if false, it will hide GPS in EXIF)
+  // To show the 'GPS' field in the configuration below
+  abbreviated_metadata: ["Model", "ISO", "ExposureTime", "ApertureValue"],
+  detail_metadata: ["Model", "ISO", "ExposureTime", "ApertureValue", "FocalLengthIn35mmFormat", "GPS"],
+
+  // image conversion (avif/webp)
+  imageConvert: {
+    enabled: false,   // set true to convert images
+    format: 'avif',   // 'avif' | 'webp'
+    quality: 80,      // 1-100
+    effort: 4,        // 0-6 (webp) or 0-9 (avif), higher = slower but better compression
+  },
 
   // abouts
   about: {
@@ -177,7 +190,7 @@ export const globalConfig = {
     ],
     todo: [
       { complete: true, text: "女装" },
-      { complete: false, text: "学车" },
+      { complete: true, text: "学车" },
       { complete: false, text: "揾点嘢做" },
       { complete: false, text: "搭一套持续可用的自组服务" },
     ],

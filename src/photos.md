@@ -129,6 +129,8 @@ const closeImg = () => { activeImg.value = null }
             <PostCard
               :image="photo.path"
               :description="photo.fileName"
+              :metadata="photo.metadata"
+              :visibleMetaKeys="photo.visibleMetaKeys"
               meta=false
               @click="showImg(photo.path)"
             />

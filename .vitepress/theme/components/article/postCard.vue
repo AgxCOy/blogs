@@ -14,6 +14,8 @@ interface CardProps {
   type?: string;
   negative?: boolean;
   meta?: string;
+  metadata?: Record<string, string>;
+  visibleMetaKeys?: string[];
 }
 
 const props = withDefaults(defineProps<CardProps>(), {
@@ -26,11 +28,12 @@ const props = withDefaults(defineProps<CardProps>(), {
   type: "",
   negative: false,
   meta: "true",
+  metadata: () => ({}),
+  visibleMetaKeys: () => [],
 });
 
 const { handleMouseMove, handleMouseEnter, handleMouseLeave } = useCardHover();
 
-// 计算最终跳转链接
 const clink = computed(() => {
   if (props.type === "project" && props.category) {
     return `https://github.com/${props.category}`;
@@ -38,7 +41,6 @@ const clink = computed(() => {
   return props.url || "";
 });
 
-// 处理换行符
 const descriptionText = computed(() => {
   if (!props.description) return "";
   return props.description
@@ -47,13 +49,16 @@ const descriptionText = computed(() => {
     .replace(/\r\n/g, "\n");
 });
 
-// 判断是否可点击
 const isClickable = computed(() => !!clink.value);
+
+const displayMetaKeys = computed(() => {
+  const configKeys = (globalConfig as any).abbreviated_metadata || [];
+  if (!props.metadata) return [];
+  return configKeys.filter((key: string) => props.metadata![key]);
+});
 </script>
 
 <template>
-  <!-- 用 a 或 div 动态渲染 -->
-  <!-- ✅ 关键改动：动态绑定 class，当 props.negative 为真时添加 'is-negative' 类 -->
   <component
     :is="isClickable ? 'a' : 'div'"
     :href="isClickable ? url : undefined"
@@ -64,15 +69,20 @@ const isClickable = computed(() => !!clink.value);
     @mousemove="handleMouseMove"
     @mouseleave="handleMouseLeave"
   >
-    <!-- ✅ 优化：删除了原本代码中重复嵌套了一层的 v-if="props.image" -->
     <div v-if="props.image" class="img-container">
       <img :src="props.image" />
+      <div v-if="displayMetaKeys.length" class="exif-overlay">
+        <div class="exif-items">
+          <span v-for="key in displayMetaKeys" :key="key" class="exif-item">
+            {{ props.metadata?.[key] }}
+          </span>
+        </div>
+      </div>
     </div>
 
     <div class="textPlace">
       <p class="title" v-if="props.title">{{ props.title }}</p>
 
-      <!-- 支持换行 -->
       <p
         class="details"
         v-if="props.description && props.title"
@@ -89,7 +99,6 @@ const isClickable = computed(() => !!clink.value);
       </p>
 
       <div class="meta" v-if="props.meta === 'true'">
-        <!-- 分类显示 -->
         <template v-if="props.category">
           <a v-if="props.type === 'project'" class="category" :href="clink">
             <Icon :icon="globalConfig.icon.friends" />
@@ -134,12 +143,52 @@ const isClickable = computed(() => !!clink.value);
 </template>
 
 <style scoped>
+.img-container {
+  position: relative;
+}
+
 .img-container img {
   border-radius: var(--vp-border-radius-1) var(--vp-border-radius-1) 0 0;
   border-bottom: 1px solid var(--vp-c-divider);
   height: 200px;
   width: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.exif-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent 55%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 12px 16px;
+  opacity: 0;
+  transition: opacity var(--vp-transition-time);
+  pointer-events: none;
+  border-radius: var(--vp-border-radius-1) var(--vp-border-radius-1) 0 0;
+}
+
+.img-container:hover .exif-overlay {
+  opacity: 1;
+}
+
+.exif-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.exif-item {
+  font-size: 12px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2px 8px;
+  border-radius: var(--vp-border-radius-1);
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
 .iconify {
@@ -170,9 +219,6 @@ const isClickable = computed(() => !!clink.value);
   box-shadow: var(--vp-shadow-brand);
 }
 
-/* ========================================== */
-/* ✅ 新增：Negative 状态下的 Hover 样式覆盖 */
-/* ========================================== */
 .diary.is-negative {
   border-style: dashed;
   border-color: var(--vp-c-yellow-1);
@@ -185,7 +231,6 @@ const isClickable = computed(() => !!clink.value);
 .diary.is-negative:hover .title {
   color: var(--vp-c-yellow-1);
 }
-/* ========================================== */
 
 .textPlace {
   padding: 25px;
@@ -220,7 +265,6 @@ const isClickable = computed(() => !!clink.value);
   color: var(--vp-c-brand-2);
 }
 
-/* ✅ 关键：换行 + 自动换行 */
 .details {
   color: var(--vp-c-text-2);
   font-size: 14px;
