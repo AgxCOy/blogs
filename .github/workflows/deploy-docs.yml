@@ -2,6 +2,8 @@ name: deploys
 
 on:
   push:
+    branches:
+      - main
     paths:
       - .vitepress/**
       - public/**
@@ -9,11 +11,11 @@ on:
       - config.ts
       - package.json
   workflow_dispatch:
-    inputs:
-      publish:
-        description: 'Force Update EdgeOne Pages'
-        required: false
-        type: boolean
+    # inputs:
+    #   publish:
+    #     description: 'Force Update EdgeOne Pages'
+    #     required: false
+    #     type: boolean
 
 jobs:
   build:
@@ -45,29 +47,29 @@ jobs:
       - name: 构建博客
         run: pnpm install && pnpm build
 
-      - uses: actions/upload-artifact@v6
-        with:
-          name: site-dist
-          path: .vitepress/dist/**/*
-          compression-level: 9
+      # - uses: actions/upload-artifact@v6
+      #   with:
+      #     name: site-dist
+      #     path: .vitepress/dist/**/*
+      #     compression-level: 9
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: |
-      (github.event_name != 'workflow_dispatch' ||
-      github.event.inputs.publish == 'true') &&
-      github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-dist
-          path: .vitepress/dist
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: |
+  #     (github.event_name != 'workflow_dispatch' ||
+  #     github.event.inputs.publish == 'true') &&
+  #     github.ref == 'refs/heads/main'
+  #   steps:
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: site-dist
+  #         path: .vitepress/dist
 
-      - name: 设置 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+  #     - name: 设置 pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 10
 
       - name: 推送 EdgeOne
         run: |
@@ -77,25 +79,25 @@ jobs:
         env:
           EDGEONE_PAGES_API_TOKEN: ${{ secrets.EDGEONE_PAGES_API_TOKEN }}
 
-  lighthouse:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  # lighthouse:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: site-dist
-          path: .vitepress/dist
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: site-dist
+  #         path: .vitepress/dist
 
-      - name: 设置 pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+  #     - name: 设置 pnpm
+  #       uses: pnpm/action-setup@v4
+  #       with:
+  #         version: 10
 
-      - name: Lighthouse 性能测试
-        run: |
-          pnpm install -g @lhci/cli@0.15.x
-          lhci autorun
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+  #     - name: Lighthouse 性能测试
+  #       run: |
+  #         pnpm install -g @lhci/cli@0.15.x
+  #         lhci autorun
+  #       env:
+  #         LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
