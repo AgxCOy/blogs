@@ -57,10 +57,12 @@ onMounted(() => {
     </div>
 
     <template v-else-if="photo">
+      <!--
       <a class="back-link" href="/photos">
         <Icon icon="ph:arrow-left-duotone" />
         <span>{{ lg.backToPhotos || "Back to Photos" }}</span>
       </a>
+      -->
 
       <div class="image-section">
         <img :src="photo.path" :alt="photo.fileName" />
@@ -139,11 +141,12 @@ onMounted(() => {
 
 .photo-title {
   font-family: var(--vp-font-family-display);
-  font-size: 1.25rem;
   font-weight: 400;
   color: var(--vp-c-text-1);
   margin: 0 0 1.5rem 0;
   word-break: break-all;
+  border-top: 0;
+  padding:0;
 }
 
 .meta-list {

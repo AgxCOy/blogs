@@ -24,21 +24,22 @@
   --vp-font-family-base: "LXGW WenKai", system-ui, sans-serif;
   --vp-font-family-mono: "Google Sans Code", var(--vp-font-family-base);
   /* only for title !!!!!! */
-  --vp-font-family-title: "Crimson Pro", "Noto Serif SC", Georgia, serif;
+  --vp-font-family-title: "Noto Serif SC", var(--vp-font-family-base);
 
   /* Border Radius */
   --vp-border-radius-2: calc(var(--vp-border-radius-1) - 6px);
   --vp-border-radius-3: calc(var(--vp-border-radius-2) - 6px);
   --vp-border-radius-4: calc(var(--vp-border-radius-3) - 6px);
 
-  /* Shadow — soft warm, lower opacity, Claude-inspired */
+  /* Shadow */
   --vp-shadow:
-    rgba(0, 0, 0, 0.04) 0px 4px 12px,
-    rgba(0, 0, 0, 0.03) 0px 2px 6px;
+    var(--vp-c-bg-alt) 0px 12px 25px -5px, var(--vp-c-bg-alt) 0px 7px 15px -7px;
   --vp-shadow-brand:
-    oklch(0.68 0.12 calc(var(--hue) + 28) / 0.18) 0px 8px 20px -4px;
+    var(--vp-c-brand-soft) 0px 12px 25px -5px,
+    var(--vp-c-brand-soft) 0px 7px 15px -7px;
   --vp-shadow-negative:
-    rgba(212, 160, 23, 0.18) 0px 8px 20px -4px;
+    var(--vp-c-yellow-soft) 0px 12px 25px -5px,
+    var(--vp-c-yellow-soft) 0px 7px 15px -7px;
 
   /* Blur */
   --vp-blur: blur(10px);
@@ -46,9 +47,9 @@
   /* Mini Icon Background */
   --vp-mini-bg: var(--vp-c-bg-elv);
 
-  /* Editoral tokens for photo detail */
-  --vp-card-padding: 28px;
-  --vp-font-family-display: "Crimson Pro", "Noto Serif SC", Georgia, serif;
+  /* Editorial tokens for photo detail */
+  --vp-card-padding: calc(var(--vp-gap) * 2.5);
+  --vp-font-family-display: "Playfair Display", var(--vp-font-family-title);
   --vp-font-size-meta: 0.75rem;
   --vp-font-letter-spacing-meta: 0.4em;
   --vp-font-weight-body: 400;

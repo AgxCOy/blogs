@@ -37,7 +37,6 @@ export const globalConfig = {
     color: {
       hue: 350,
       globalHue: false, // if true, the hue will be applied to all colors; if false, only the hue of brand color will be changed, the others is calculated based on catppuccin latte & macchiato palette.
-      preset: "claude" as "claude" | "catppuccin", // color scheme: "claude" (warm humanist) | "catppuccin" (pastel purple)
       rainbow: {
         enabled: false, // hue will be cycled
         speed: 10, // hue is (getCurrentHue() + x) % 360......(updateHue, 100);
@@ -144,14 +143,11 @@ export const globalConfig = {
   // To show the 'GPS' field in the configuration below
   abbreviated_metadata: ["Model", "ISO", "ExposureTime", "ApertureValue"],
   detail_metadata: ["Model", "ISO", "ExposureTime", "ApertureValue", "FocalLengthIn35mmFormat", "GPS"],
+  
+  convert_photos: true,// enable convert photos to webp or avif (if false, it will not convert photos)
+  convert_photos_format: "webp", // convert photos to webp or avif (webp / avif)
+  convert_photos_quality: 80, // convert photos quality (0-100)
 
-  // image conversion (avif/webp)
-  imageConvert: {
-    enabled: false,   // set true to convert images
-    format: 'avif',   // 'avif' | 'webp'
-    quality: 80,      // 1-100
-    effort: 4,        // 0-6 (webp) or 0-9 (avif), higher = slower but better compression
-  },
 
   // abouts
   about: {

@@ -1,9 +1,8 @@
-import { existsSync, readFileSync, statSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, statSync } from "fs";
 import path from "path";
 import { defineLoader } from "vitepress";
 import exifr from "exifr";
 import { globalConfig } from "#config";
-
 
 export interface Photo {
   fileName: string;
@@ -13,10 +12,9 @@ export interface Photo {
   visibleMetaKeys?: string[];
 }
 
-const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.tif']);
-
-
 export let data: Photo[];
+
+const IMAGE_EXTENSIONS = new Set([".jpg", ".jpeg", ".png", ".tiff", ".tif", ".gif"]);
 
 function formatExposureTime(value: number | undefined): string {
   if (!value || value <= 0) return "";
@@ -39,7 +37,7 @@ async function formatAddress(lat: number | undefined, lon: number | undefined): 
     if(data.code !== 200) {
       throw new Error(`API error: ${data.code}`);
     }
-    if(!data.nation || !data.province || !data.county) {//不包括data.city，可能是直辖市
+    if(!data.nation || !data.province || !data.county) {//不包括data.city，可能是直辖市。为直辖市时市名在province字段中，city字段为空
       throw new Error(`Incomplete address data: ${JSON.stringify(data)}`);
     }
     const address = `${data.nation}${data.province}${data.city}${data.county}`;
@@ -84,7 +82,6 @@ async function extractMetadata(
       ifd0: true,
       gps: true,
     });
-    const gpsDate = await exifr.gps(buffer);
     if (!raw) return { metadata, visibleMetaKeys };
 
     for (const key of keys) {
@@ -105,9 +102,9 @@ async function extractMetadata(
           else if (raw.ApertureValue) value = formatAperture(raw.ApertureValue);
           break;
         case "GPS":
-          if (gpsDate.latitude && gpsDate.longitude) {
-            const lat = gpsDate.latitude;
-            const lon = gpsDate.longitude;
+          if (raw.latitude && raw.longitude) {
+            const lat = raw.latitude;
+            const lon = raw.longitude;
             value = await formatAddress(lat, lon);
           }
           break;
@@ -131,22 +128,25 @@ async function extractMetadata(
 export default defineLoader({
   watch: ["public/data/photos/**/*", "public/data/photos.json"],
 
-async load(files) {
+  async load(files) {
     const { globalConfig } = await import("#config");
     const abbrKeys: string[] = globalConfig?.abbreviated_metadata ?? [];
     const detailKeys: string[] = (globalConfig as any)?.detail_metadata ?? [];
     const metaKeys: string[] = [...new Set([...abbrKeys, ...detailKeys])];
-    const convertConfig = (globalConfig as any)?.imageConvert;
+
+    const convertEnabled = globalConfig?.convert_photos === true;
+    const convertFormat = globalConfig?.convert_photos_format ?? "webp";
+    const convertQuality = globalConfig?.convert_photos_quality ?? 80;
+    const targetExt = `.${convertFormat}`;
+    const outputDir = path.resolve(process.cwd(), "public/data/convertphotos");
+    if (convertEnabled) {
+      mkdirSync(outputDir, { recursive: true });
+    }
 
     const result: Photo[] = [];
     const seenPaths = new Set<string>();
-    const convertCache = new Map<string, string>();
-    const targetExt = convertConfig?.format ? `.${convertConfig.format}` : null;
-
     for (const file of files) {
       if (file.endsWith(".json")) continue;
-
-      if (targetExt && file.endsWith(targetExt)) continue;
 
       const stats = statSync(file);
       if (!stats.isFile()) continue;
@@ -157,48 +157,37 @@ async load(files) {
 
       const category = parts[0];
       let fileName = parts[parts.length - 1];
-
       let photoPath = `/data/photos/${category}/${fileName}`;
 
-      if (convertConfig?.enabled) {
+      if (convertEnabled) {
         const sourceExt = path.extname(file).toLowerCase();
         if (IMAGE_EXTENSIONS.has(sourceExt)) {
-          const targetExt = `.${convertConfig.format}`;
-          const parsedPath = path.parse(file);
-          const convertedFile = path.join(parsedPath.dir, `${parsedPath.name}${targetExt}`);
+          const baseName = path.parse(file).name;
+          const convertedFileName = `${baseName}${targetExt}`;
+          const convertedFilePath = path.join(outputDir, convertedFileName);
 
-          if (!convertCache.has(file)) {
-            const needsConvert = !existsSync(convertedFile)
-              || statSync(file).mtimeMs > statSync(convertedFile).mtimeMs;
-
-            if (needsConvert) {
-              try {
-                const sharp = (await import("sharp")).default;
-                console.log(`Converting ${fileName} to ${convertConfig.format}...`);
-                await sharp(file)
-                  .withMetadata()
-                  .toFormat(convertConfig.format as 'avif' | 'webp', {
-                    quality: convertConfig.quality ?? 80,
-                    effort: convertConfig.effort ?? 4,
-                  })
-                  .toFile(convertedFile);
-                console.log(`  -> ${path.basename(convertedFile)}`);
-              } catch (err) {
-                console.error(`Failed to convert ${fileName}:`, err);
-              }
+          if (!existsSync(convertedFilePath)) {
+            try {
+              const sharp = (await import("sharp")).default;
+              console.log(`Converting ${fileName} to ${convertFormat}...`);
+              await sharp(file)
+                .withMetadata()
+                .toFormat(convertFormat as "avif" | "webp", {
+                  quality: convertQuality,
+                })
+                .toFile(convertedFilePath);
+              console.log(`  -> ${convertedFileName}`);
+            } catch (err) {
+              console.error(`Failed to convert ${fileName}:`, err);
             }
-            convertCache.set(file, convertedFile);
           }
 
-          const cached = convertCache.get(file)!;
-          if (existsSync(cached)) {
-            const rel = path.relative("public/data/photos", cached).split(path.sep).join('/');
-            photoPath = `/data/photos/${rel}`;
-            fileName = path.basename(rel);
+          if (existsSync(convertedFilePath)) {
+            photoPath = `/data/convertphotos/${convertedFileName}`;
+            fileName = convertedFileName;
           }
         }
       }
-
       if (seenPaths.has(photoPath)) continue;
       seenPaths.add(photoPath);
 
