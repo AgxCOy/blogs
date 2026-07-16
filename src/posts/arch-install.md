@@ -337,13 +337,13 @@ KDE 原生的桌面 UI 就挺 Windows 的，但胜在自由度足够高。
 ### I. VSCode 提交签名
 大体上跟着 [Commit Signing - VSCode Wiki](https://github.com/microsoft/vscode/wiki/Commit-Signing) 就可以了。唯一需要留意的是`pinentry`。
 
-VSCode 的主侧栏“源代码管理”页提交时并不会走终端，也就莫得 pinentry 的 CUI；莫得 pinentry 输密码验证，提交就签不了名。
-虽然有人好像搞了个`pinentry-extension`出来，但 6 月初我去看的时候它连说明书都莫得，也没有上架，那用集贸。
+VSCode 的侧边栏“源代码管理”页提交时并不会走终端，也就莫得 pinentry 的 CUI；莫得 pinentry 输密码验证，提交就签不了名。
+~~虽然有人好像搞了个`pinentry-extension`出来，但 6 月初我去看的时候它连说明书都莫得，也没有上架，那用集贸。~~
+如今可以使用 [GPG Indicator](https://marketplace.visualstudio.com/items?itemName=wdhongtw.gpg-indicator) 插件**在提交之前**先行解锁了。它也支持调用远端的 gpg（算是对 Windows 友好）。
 
-所以我选择编辑`~/.gnupg/gpg-agent.conf`：
+但还是建议稍微延长一下密钥缓存。编辑`~/.gnupg/gpg-agent.conf`：
 ```properties
 default-cache-ttl 21600
-pinentry-program /usr/bin/pinentry-qt
 ```
 保存后重启`gpg-agent`：`gpg-connect-agent reloadagent /bye`。
 
@@ -352,8 +352,10 @@ pinentry-program /usr/bin/pinentry-qt
 ```sh
 ls /usr/bin | grep 'pinentry'
 echo GETPIN | pinentry
+# 若 GETPIN 抛出错误，可以改用下面这条
+echo "test" | gpg --clearsign
 ```
-你可以用这两条命令看看都支持什么后端，以及它会自动选择哪个。像 niri 通常会装 gnome 后端，测试结果也的确会出`pinentry-gnome3`的密码框。
+你可以用上述命令看看都支持什么后端，以及它会自动选择哪个。像 niri 通常会装 gnome 后端，测试结果也的确会出`pinentry-gnome3`的密码框。
 :::
 
 除此之外，`pinentry`需要指定 tty，否则找不到 IO 设备也会炸。解法：`export GPG_TTY=$(tty)`。

@@ -84,8 +84,8 @@ export default withMermaid({
   },
   head: [
     ["link", { rel: "icon", href: globalConfig.favicon }],
-    ['link', { rel: 'dns-prefetch', href: 'https://fonts.googleapis.cn' }],
-    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.cn' }],
+    ['link', { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
   ],
 
   themeConfig: {
