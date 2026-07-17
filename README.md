@@ -1,46 +1,27 @@
-<h3 align="center">
+# Ag's Playground
 
-<img src="https://raw.githubusercontent.com/Ender-Wiggin2019/ServiceLogos/main/Vite/Vite.png" width="200"/>
+……就是咱的博客。SilverAg's blog (Powered by Miracle).
 
-It's Miracle!!!!!
+参见 / See: [agxcoy.shimakaze.org](https://agxcoy.shimakaze.org)  
+留言 / leave comments: [Whiteboard](https://agxcoy.shimakaze.org/whiteboard)  
+数字名片 / link tree: [Links](http://agxcoy-static.apage.dev)
 
-</h3>
+## 贡献 Contribution
 
-<p align="center">
-<span>A lovely VitePress theme QwQ</span>
-</p>
+如对本博客使用的主题感兴趣，希望对主题作出贡献，请到上游。  
+Interested with Miracle blog theme? Wanna contribute to Miracle? Go upstream.
 
-> [!NOTE]
-> You can join our QQ group: 1093244717
+> 原档 (Original) Miracle: [Miralous/Miracle](https://github.com/Miralous/Miracle)  
+> 代码清理版 (Cleaned-Up) Miracle: [Miralous/PureMiracle](https://github.com/Miralous/PureMiracle)  
+> [WIP] monorepo Miracle: [Miralous/vitepress-theme-miracle](https://github.com/Miralous/vitepress-theme-miracle)
 
-## Getting Started
+如对我的记述有所建言，移步 [AgxCOy/AgxCOy](https://github.com/AgxCOy/AgxCOy/issues) 畅所欲言，或是提交 PR 到本仓库。  
+Any suggestions? Open an issue in profile repo. Any corrections? PR welcomed.
 
-1. Create your blog repository:
-   - [Generate a new repository](https://github.com/Miralous/miracle/generate) from this template or fork this repository.
-2. To edit your blog locally, clone your repository, run `pnpm install` to install dependencies.
-   - Install [pnpm](https://pnpm.io) `npm install -g pnpm` if you haven't.
-3. Edit the config file `config.ts` to customize your blog.
-4. Deploy your blog to Vercel, Netlify, GitHub Pages, etc.
+如希望交个朋友，也请移步 AgxCOy/AgxCOy [提交友链申请](https://github.com/AgxCOy/AgxCOy/issues/new?template=%E7%94%B3%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%8D%9A%E5%AE%A2%E5%8F%8B%E9%93%BE-friends-request.yml)。  
+Willing to make friends with links exchanged? blog-link issue also OK.
 
-## Manage
+## 鸣谢 Credits
 
-1. Go to `https://your.website.com/manager`.
-2. Pick a tab:
-   - Posts: Edit all your posts.
-   - Moments: Edit all your moments.
-   - Links: Edit all your links.
-3. Click the icon you want.
-
-## Commands
-
-| Command        | Action                                             |
-| :------------- | :------------------------------------------------- |
-| `pnpm install` | Installs dependencies                              |
-| `pnpm dev`     | Starts local dev server at `localhost:4321`        |
-| `pnpm build`   | Build your production site to `./.vitepress/dist/` |
-| `pnpm preview` | Preview your build locally, before deploying       |
-
-
-## License
-
-This project is licensed under the MIT License.
+- [frg2089](https://github.com/frg2089)
+- [silvaire-qwq](https://github.com/silvaire-qwq)
