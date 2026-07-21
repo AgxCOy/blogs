@@ -31,7 +31,7 @@ export const globalConfig = {
   },
   dateCreated: "2026-05-06", // date created (YYYY-MM-DD)
   deepHideNegative: true, // enable press "s" 1s to show negative button
-  firstPageMode: 1,
+  firstPageMode: 2,  // 1 for splash 2 for banner
 
   // theme setting
   styles: {
