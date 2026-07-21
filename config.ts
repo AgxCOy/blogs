@@ -31,6 +31,7 @@ export const globalConfig = {
   },
   dateCreated: "2026-05-06", // date created (YYYY-MM-DD)
   deepHideNegative: true, // enable press "s" 1s to show negative button
+  firstPageMode: 1,
 
   // theme setting
   styles: {
@@ -147,7 +148,6 @@ export const globalConfig = {
   convert_photos: true,// enable convert photos to webp or avif (if false, it will not convert photos)
   convert_photos_format: "webp", // convert photos to webp or avif (webp / avif)
   convert_photos_quality: 80, // convert photos quality (0-100)
-
 
   // abouts
   about: {
