@@ -12,7 +12,6 @@
 Interested with Miracle blog theme? Wanna contribute to Miracle? Go upstream.
 
 > 原档 (Original) Miracle: [Miralous/Miracle](https://github.com/Miralous/Miracle)  
-> 代码清理版 (Cleaned-Up) Miracle: [Miralous/PureMiracle](https://github.com/Miralous/PureMiracle)  
 > [WIP] monorepo Miracle: [Miralous/vitepress-theme-miracle](https://github.com/Miralous/vitepress-theme-miracle)
 
 如对我的记述有所建言，移步 [AgxCOy/AgxCOy](https://github.com/AgxCOy/AgxCOy/issues) 畅所欲言，或是提交 PR 到本仓库。  
