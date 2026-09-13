@@ -187,8 +187,9 @@ export const globalConfig = {
     todo: [
       { complete: true, text: "女装" },
       { complete: true, text: "学车" },
-      { complete: false, text: "揾点嘢做" },
-      { complete: false, text: "搭一套持续可用的自组服务" },
+      { complete: true, text: "揾点嘢做" },
+      { complete: true, text: "搭一套持续可用的自组服务" },
+      { complete: false, text: "..." },
     ],
     schedule: {
       enabled: false,
