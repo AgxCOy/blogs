@@ -1,0 +1,173 @@
+name: 更新博客友链
+
+on:
+  issues:
+    types:
+      - opened
+      - edited
+      - reopened
+      - closed
+
+permissions:
+  issues: write
+  contents: write
+  pull-requests: write
+
+jobs:
+  validate_issue:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'blog-link') && github.event.issue.state == 'open'
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: 解析元数据
+        id: parse
+        shell: pwsh
+        run: |-
+          function Format-Value {
+            param (
+              [Parameter(Mandatory)]
+              [string]
+              $Value
+            )
+            $Value -eq '_No response_' ? $null : $Value
+          }
+
+          $result = gh issue view ${{ github.event.issue.number }} `
+            --repo '${{ github.repository }}' `
+            --json body `
+          | ConvertFrom-Json
+          $result.body
+
+          $record = @{}
+          $lines = $result.body -split "`n"
+
+          $lines | ForEach-Object {
+            if ($PSItem.StartsWith('### ')) {
+              $currentKey = $PSItem.Substring(4)
+            }
+            elseif ($currentKey -and $PSItem) {
+              if ($record[$currentKey]) {
+                $record[$currentKey] += "`n"
+                $record[$currentKey] += $PSItem.Trim()
+              }
+              else {
+                $record[$currentKey] = $PSItem.Trim()
+              }
+            }
+          }
+          $record
+
+          $metadata = @{
+            title  = Format-Value -Value $record['名称 Your Name']
+            img    = Format-Value -Value $record['头像 Your Avatar URI']
+            desc   = Format-Value -Value $record['自述、留言 Your Note']
+            link   = Format-Value -Value $record['链接 Your Website URI']
+            folder = Format-Value -Value $record['分组 Grouped As']
+          }
+          if ($null -eq $metadata['folder']) {
+            $metadata.Remove('folder')
+          }
+
+          $json = $metadata | ConvertTo-Json -Compress
+          $json
+
+          "metadata=$json" | Out-File -LiteralPath $env:GITHUB_OUTPUT -Append
+      - name: 测试链接连通性
+        shell: pwsh
+        run: |-
+          try {
+            Invoke-WebRequest -Uri '${{ fromJson(steps.parse.outputs.metadata).link }}' -SslProtocol Tls13 -UseBasicParsing | Out-Null
+          }
+          catch {
+            $uri = [uri]'${{ fromJSON(steps.parse.outputs.metadata).link }}'
+            '## ❌ Failure' | Out-File -LiteralPath '.body'
+            '链接无法访问。可能需要再次提交。' | Out-File -LiteralPath '.body' -Append
+            'Link is unable to reach. may need commit again.' | Out-File -LiteralPath '.body' -Append
+            Test-NetConnection -ComputerName $uri.Host -Port $uri.Port | Out-File -LiteralPath '.body' -Append
+            
+            gh issue comment ${{ github.event.issue.number }} `
+              --repo '${{ github.repository }}' `
+              --edit-last `
+              --create-if-none `
+              --body-file '.body'
+          }
+
+      - name: 签出博客仓库
+        uses: actions/checkout@v6
+
+      - name: 更新友链
+        shell: pwsh
+        run: |-
+          git checkout -b 'links/gh#${{ github.event.issue.number }}'
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          '${{ steps.parse.outputs.metadata }}' `
+          | ConvertFrom-Json `
+          | ConvertTo-Json `
+          | Out-File -LiteralPath './public/data/friends/links-gh${{ github.event.issue.number }}.json'
+
+          git add './public/data/friends/links-gh${{ github.event.issue.number }}.json'
+          git commit -m "更新友链 ${{ fromJson(steps.parse.outputs.metadata).title }} (#${{ github.event.issue.number }})"
+
+          git push origin 'links/gh#${{ github.event.issue.number }}' --force
+          gh pr create `
+            --base main `
+            --head 'links/gh#${{ github.event.issue.number }}' `
+            --title "友链请求：${{ fromJson(steps.parse.outputs.metadata).title }}" `
+            --body "Closes #${{ github.event.issue.number }}"
+
+      - name: 评论 :)
+        if: success()
+        shell: pwsh
+        run: |-
+          '## ⏳ Waiting' | Out-File -LiteralPath '.body'
+          '已创建拉取请求！合并后将自动生效。' | Out-File -LiteralPath '.body' -Append
+          'Pull request created! It will take effect after merging.' | Out-File -LiteralPath '.body' -Append
+
+          gh issue comment ${{ github.event.issue.number }} `
+            --repo '${{ github.repository }}' `
+            --edit-last `
+            --create-if-none `
+            --body-file '.body'
+
+      - name: 评论 :(
+        if: failure()
+        shell: pwsh
+        run: |-
+          '## ❌ Failure' | Out-File -LiteralPath '.body'
+          '无法创建拉取请求！' | Out-File -LiteralPath '.body' -Append
+          'Cannot create Pull request!' | Out-File -LiteralPath '.body' -Append
+
+          gh issue comment ${{ github.event.issue.number }} `
+            --repo '${{ github.repository }}' `
+            --edit-last `
+            --create-if-none `
+            --body-file '.body'
+
+  merged:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'blog-link') && github.event.issue.state == 'closed' && github.event.issue.state_reason == 'completed'
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: 合并拉取请求
+        shell: pwsh
+        run: |-
+          gh pr merge 'links/gh#${{ github.event.issue.number }}' `
+            --repo '${{ github.repository }}' `
+            --delete-branch `
+            --squash
+      - name: 评论 :)
+        shell: pwsh
+        run: |-
+          '## 🎉 Success' | Out-File -LiteralPath '.body'
+          '已合并请求！' | Out-File -LiteralPath '.body' -Append
+          'Pull request merged!' | Out-File -LiteralPath '.body' -Append
+
+          gh issue comment ${{ github.event.issue.number }} `
+            --repo '${{ github.repository }}' `
+            --edit-last `
+            --create-if-none `
+            --body-file '.body'
