@@ -41,7 +41,7 @@ const groupedFriends = computed(() => {
 </script>
 
 > ::: center
-> [点此添加友链喵～](https://github.com/AgxCOy/AgxCOy/issues/new?template=%E7%94%B3%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%8D%9A%E5%AE%A2%E5%8F%8B%E9%93%BE-friends-request.yml)
+> [点此添加友链喵～](https://github.com/AgxCOy/blogs/issues/new?template=%E7%94%B3%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%8D%9A%E5%AE%A2%E5%8F%8B%E9%93%BE-friends-request.yml)
 > :::
 
 <div class="allFriend">

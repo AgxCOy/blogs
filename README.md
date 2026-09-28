@@ -14,10 +14,10 @@ Interested with Miracle blog theme? Wanna contribute to Miracle? Go upstream.
 > 原档 (Original) Miracle: [Miralous/Miracle](https://github.com/Miralous/Miracle)  
 > [WIP] monorepo Miracle: [Miralous/vitepress-theme-miracle](https://github.com/Miralous/vitepress-theme-miracle)
 
-如对我的记述有所建言，移步 [AgxCOy/AgxCOy](https://github.com/AgxCOy/AgxCOy/issues) 畅所欲言，或是提交 PR 到本仓库。  
+如对我的记述有所建言，可移步 [Issues](https://github.com/AgxCOy/blogs/issues) 畅所欲言，或是提交 PR。  
 Any suggestions? Open an issue in profile repo. Any corrections? PR welcomed.
 
-如希望交个朋友，也请移步 AgxCOy/AgxCOy [提交友链申请](https://github.com/AgxCOy/AgxCOy/issues/new?template=%E7%94%B3%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%8D%9A%E5%AE%A2%E5%8F%8B%E9%93%BE-friends-request.yml)。  
+如希望交个朋友，也可以直接[提交友链申请](https://github.com/AgxCOy/blogs/issues/new?template=%E7%94%B3%E8%AF%B7%E6%B7%BB%E5%8A%A0%E5%8D%9A%E5%AE%A2%E5%8F%8B%E9%93%BE-friends-request.yml)。  
 Willing to make friends with links exchanged? blog-link issue also OK.
 
 ## 鸣谢 Credits
