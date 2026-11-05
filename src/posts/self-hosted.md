@@ -70,11 +70,7 @@ sudo zerotier-cli listnetworks
 ```
 
 == Docker
-[官方文档](https://docs.zerotier.com/docker/)的做法是拉一个 centos 在里面用 systemd 方式安装，属于是脱裤子放屁。但有这么一句话值得注意：
-
-> ZeroTier One makes ZeroTier virtual networks available *as 'tap' virtual network ports*. To do this inside a Docker container requires **a few elevated permissions and access to the `/dev/net/tun` device**.
-
-我的 compose 文件如下。防火墙需要放行`9993/udp`。
+[官方文档](https://docs.zerotier.com/docker/)的做法是拉一个 centos 在里面用 systemd 方式安装，属于是脱裤子放屁。但**赋权和 TUN 模式需要注意**。防火墙则需要放行`9993/udp`。
 
 ```yml{6-11}
 services:
